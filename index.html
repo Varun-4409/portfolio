@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun Kumar | Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #7e22ce;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .profile-container {
+            position: relative;
+            margin: 0 auto 2rem;
+            width: 180px;
+            height: 180px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-content {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section-content:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Education */
+        .education-item, .certification-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+        }
+
+        .education-item:last-child, .certification-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .education-item h3, .certification-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px var(--shadow);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px var(--shadow);
+        }
+
+        .project-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-details {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .project-item ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-item li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .project-item li::before {
+            content: '▹';
+            color: var(--primary);
+            position: absolute;
+            left: -1rem;
+        }
+
+        /* Certifications */
+        .certification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .certification-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .skills-container, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .education-details {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .certification-item {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Varun<span>.</span></div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#certifications">Certifications</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-img">VK</div>
+            </div>
+            <div class="hero-content">
+                <h1>Varun Kumar</h1>
+                <p>BCA Student & Aspiring Software Developer</p>
+                <div class="contact-info">
+                    <a href="mailto:varunkumarjagotra@gmail.com">
+                        <i class="fas fa-envelope"></i> varunkumarjagotra@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/Varun-jagotra-571b82294" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Varun-4409" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="tel:+917717473899">
+                        <i class="fas fa-phone"></i> +91-7717473899
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-content animate">
+                <p>I'm a Bachelor of Computer Applications student at Chandigarh University with a passion for software development. I enjoy creating practical applications and solving complex problems through code. My expertise includes C++, PHP, and web development with WordPress.</p>
+                <p>I'm constantly learning new technologies and improving my skills to become a proficient software developer. My goal is to contribute to innovative projects and grow as a professional in the tech industry.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="section-content animate">
+                <div class="education-item">
+                    <h3><i class="fas fa-graduation-cap"></i> Chandigarh University</h3>
+                    <div class="education-details">
+                        <p>Bachelor of Computer Applications (BCA)</p>
+                        <p>CGPA: 6.70</p>
+                    </div>
+                    <p>Pursuing undergraduate degree focused on computer applications and software development.</p>
+                </div>
+
+                <div class="education-item">
+                    <h3><i class="fas fa-book"></i> Punjab Board — Class 12th</h3>
+                    <p>Emphasis on Computer Science and Mathematics.</p>
+                </div>
+
+                <div class="education-item">
+                    <h3><i class="fas fa-book-open"></i> Punjab Board — Class 10th</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category animate">
+                    <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">C++</div>
+                        <div class="skill-item">PHP</div>
+                        <div class="skill-item">HTML</div>
+                        <div class="skill-item">CSS</div>
+                        <div class="skill-item">WordPress</div>
+                        <div class="skill-item">XAMPP</div>
+                        <div class="skill-item">GitHub</div>
+                        <div class="skill-item">VS Code</div>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">File Handling</div>
+                    </div>
+                </div>
+
+                <div class="skill-category animate">
+                    <h3><i class="fas fa-people-carry"></i> Interpersonal Skills</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Critical Thinking</div>
+                        <div class="skill-item">Analytical Approach</div>
+                        <div class="skill-item">Communication</div>
+                        <div class="skill-item">Time Management</div>
+                        <div class="skill-item">Teamwork</div>
+                        <div class="skill-item">Leadership</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-item animate">
+                    <h3><i class="fas fa-project-diagram"></i> Word Frequency Counter</h3>
+                    <div class="project-details">Console Based Application in C++</div>
+                    <ul>
+                        <li>Developed an application to calculate and display word frequency from input text</li>
+                        <li>Utilized STL containers like map for organizing frequency data</li>
+                        <li>Implemented basic file handling and sorting features</li>
+                    </ul>
+                </div>
+
+                <div class="project-item animate">
+                    <h3><i class="fas fa-hospital"></i> Hospital Management System</h3>
+                    <div class="project-details">Console Based Application in C++</div>
+                    <ul>
+                        <li>Created a system to manage hospital data such as patient details and staff information</li>
+                        <li>Provided functionalities like add, search, update, and delete using file I/O</li>
+                        <li>Employed modular code design to ensure scalability and maintenance</li>
+                    </ul>
+                </div>
+
+                <div class="project-item animate">
+                    <h3><i class="fas fa-globe"></i> Tourism Website</h3>
+                    <div class="project-details">Built with PHP and WordPress</div>
+                    <ul>
+                        <li>Designed a tourism-related website showcasing destinations and packages</li>
+                        <li>Implemented user interaction through forms and dynamic content using PHP</li>
+                        <li>Used WordPress for layout design, plugin integration, and responsive theming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="section-content animate">
+                <div class="certification-item">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h3>LinkedIn Learning</h3>
+                        <ul>
+                            <li>C++ Essential Training</li>
+                            <li>Introduction to PHP with MySQL</li>
+                            <li>WordPress Website Development</li>
+                        </ul>
+                        <p>Practical application through mini-projects and real-time examples</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Varun Kumar</h3>
+                <p>Pathankot, Punjab | varunkumarjagotra@gmail.com</p>
+                <div class="footer-links">
+                    <a href="mailto:varunkumarjagotra@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/Varun-jagotra-571b82294" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Varun-4409" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <p>&copy; 2023 Varun Kumar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
